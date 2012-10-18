@@ -1,0 +1,25 @@
+= rankit
+ This is a command-line application that will calculate the ranking table for a soccer league.
+
+Author:: Vasilina Mulyavina (vasilina.mulyavna@gmail.com)
+Copyright:: Copyright (c) 2012 Vasilina Mulyavina
+
+== USAGE
+   ruby rankit source_file destination_file
+
+== Install
+  requires methadone: gem install methadone
+
+== FORMAT INPUT
+  Lions 3, Snakes 3
+  Tarantulas 1, FC Awesome 0
+  Lions 1, FC Awesome 1
+  Tarantulas 2, Snakes 1
+  Lions 4, Grouches 0
+
+== FORMAT OUTPUT
+  1. Tarantulas, 6 pts
+  2. Lions, 5 pts
+  3. FC Awesome, 1 pt
+  3. Snakes, 1 pts
+  5. Grouches, 0 pts

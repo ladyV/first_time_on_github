@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'methadone'
+require_relative '../lib/game'
+require_relative '../lib/team'
+require_relative '../lib/teams_collection'
+require_relative '../lib/games_collection'
+
+  include Methadone::Main
+  include Methadone::CLILogging
+
+  main do |arg1,arg2|
+    input_filename = arg1
+    output_filename = arg2
+
+    games = GamesCollection.new
+    teams = TeamsCollection.new
+    games.import_from_file(input_filename)
+    games.each do |game|
+      game.assign_points_to_teams
+      teams << game.first_team
+      teams << game.second_team
+    end
+
+    teams.sort_and_rank
+    teams.export_into_file(output_filename)
+  end
+
+  arg :input_file, :required, "File the contains input data "
+  arg :output_file, :required, "File where you would like your output data"
+
+  go!

@@ -1,0 +1,20 @@
+require 'rake/testtask'
+require 'test/unit'
+gem 'rdoc' # we need the installed RDoc gem, not the system one
+require 'rdoc/task'
+
+task :default => :test
+
+Rake::TestTask.new(:test) do |t|
+  t.libs = [File.expand_path("lib"), "test"]
+  t.pattern = 'test/*_test.rb'
+  t.verbose = true
+end
+
+Rake::RDocTask.new do |rd|
+  rd.main = "README.rdoc"
+
+  rd.rdoc_files.include("README.rdoc","lib/*.rb","bin/*")
+end
+
+
